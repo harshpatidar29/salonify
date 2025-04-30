@@ -1,0 +1,36 @@
+# Python-related files
+*.pyc
+*.pyo
+__pycache__/
+*.pyd
+*.swp
+*.swo
+
+# Virtual environment directory
+venv/
+.env/
+
+# IDE files (e.g., VS Code, PyCharm)
+.vscode/
+.idea/
+
+# Databases
+*.db
+*.sqlite3
+
+# Alembic migrations (you may want to keep the migrations folder, but this can be ignored if not needed)
+alembic/
+
+# Coverage and testing files
+.coverage
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+pytest_cache/
+
+# Node.js (if using a frontend, e.g., React)
+node_modules/
+
+# .env file containing sensitive information (e.g., database credentials, secrets)
+.env
