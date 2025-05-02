@@ -20,6 +20,7 @@ venv/
 
 # Alembic migrations (you may want to keep the migrations folder, but this can be ignored if not needed)
 alembic/
+.alembic.ini
 
 # Coverage and testing files
 .coverage
