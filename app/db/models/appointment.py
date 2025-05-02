@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, Enum, DateTime, ForeignKey
+from sqlalchemy import Column, String, Integer, Enum, DateTime, ForeignKey, Time, Date
 from sqlalchemy.sql import func
 from app.db.database import Base
 from datetime import date, time
@@ -20,9 +20,9 @@ class Appointment(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    date = Column(date, nullable=False)
-    time = Column(time, nullable=False)
-    duration = Column(time, nullable=True)
+    date = Column(Date, nullable=False)
+    time = Column(Time, nullable=False)
+    duration = Column(Time, nullable=True)
     status = Column(Enum(Status), default=Status.pending, nullable=False)
     notes = Column(String, nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())

@@ -1,5 +1,5 @@
 import enum
-from sqlalchemy import Column, String, Integer, Enum, DateTime, Boolean
+from sqlalchemy import Column, String, Integer, Enum, DateTime, Boolean, Time
 from sqlalchemy.sql import func
 from app.db.database import Base
 from sqlalchemy.orm import relationship
@@ -12,7 +12,7 @@ class Gender(str, enum.Enum):
     female = "female"
     other = "other"
 
-    
+
 class Service(Base):
     __tablename__ = "services"
 
@@ -20,8 +20,8 @@ class Service(Base):
     name = Column(String, nullable=False)
     description = Column(String, nullable=True)
     price = Column(Integer, nullable=False)
-    duration = Column(time, nullable=True)
-    gender = Column(Enum(Gender), default=Gender.other)
+    duration = Column(Time, nullable=True)
+    gender = Column(Enum(Gender), default=Gender.other, nullable=True)
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 

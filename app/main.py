@@ -1,4 +1,7 @@
 from fastapi import FastAPI
+from sqlalchemy.orm import declarative_base
+
+Base = declarative_base()
 
 app = FastAPI()
 
