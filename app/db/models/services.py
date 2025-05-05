@@ -3,7 +3,6 @@ from sqlalchemy import Column, String, Integer, Enum, DateTime, Boolean, Time
 from sqlalchemy.sql import func
 from app.db.database import Base
 from sqlalchemy.orm import relationship
-from datetime import date, time
 from app.db.models.appointment_service import appointment_services
 
 

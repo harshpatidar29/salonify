@@ -1,10 +1,11 @@
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, status
 from app.db.models.user import User
-from app.schemas.users import UserCreate, UserResponse, UserUpdate
+from app.schemas.users import UserCreate, UserUpdate
 from passlib.context import CryptContext
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
 
 def get_password_hash(password: str) -> str:
     return pwd_context.hash(password)
@@ -30,8 +31,10 @@ def create_user(db: Session, user: UserCreate):
 def get_user_by_email(db: Session, email: str):
     return db.query(User).filter(User.email == email).first()
 
+
 def get_user_by_id(db: Session, id: id):
     return db.query(User).filter(User.id == id).first()
+
 
 def get_all_users(db: Session):
     return db.query(User).all()
@@ -42,7 +45,7 @@ def update_user(user_id: int, user_update: UserUpdate, db: Session):
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"User with id {user_id} not found"
+            detail=f"User with id {user_id} not found",
         )
 
     update_data = user_update.dict(exclude_unset=True)

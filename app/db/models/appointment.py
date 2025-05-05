@@ -1,7 +1,6 @@
 from sqlalchemy import Column, String, Integer, Enum, DateTime, ForeignKey, Time, Date
 from sqlalchemy.sql import func
 from app.db.database import Base
-from datetime import date, time
 from sqlalchemy.orm import relationship
 from app.db.models.appointment_service import appointment_services
 from app.db.models.services import Service
