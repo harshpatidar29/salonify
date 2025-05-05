@@ -25,4 +25,6 @@ class Service(Base):
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
-    appointments = relationship("Appointment", secondary=appointment_services, back_populates="services")
+    appointments = relationship(
+        "Appointment", secondary=appointment_services, back_populates="services"
+    )

@@ -4,10 +4,11 @@ from app.db.database import Base
 from datetime import date, time
 from sqlalchemy.orm import relationship
 from app.db.models.appointment_service import appointment_services
+from app.db.models.services import Service
 import enum
 
 
-#Appointment model
+# Appointment model
 class Status(str, enum.Enum):
     pending = "pending"
     complete = "complete"
@@ -31,7 +32,5 @@ class Appointment(Base):
 
     # Many-to-many relationship to services
     services = relationship(
-        "Service",
-        secondary=appointment_services,
-        back_populates="appointments"
+        "Service", secondary=appointment_services, back_populates="appointments"
     )

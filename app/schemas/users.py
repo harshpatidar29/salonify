@@ -5,11 +5,13 @@ from datetime import datetime
 
 PasswordStr = Annotated[str, StringConstraints(min_length=8)]
 
+
 # --- Enum ---
 class Gender(str, Enum):
     male = "male"
     female = "female"
     other = "other"
+
 
 class UserRole(str, Enum):
     owner = "owner"
@@ -19,7 +21,7 @@ class UserRole(str, Enum):
 
 # --- Base User Schema (shared fields) ---
 class BaseUser(BaseModel):
-    fullname: str
+    full_name: str
     username: str
     email: EmailStr
     phone: Optional[str] = None
@@ -38,3 +40,13 @@ class UserResponse(BaseUser):
 
     class Config:
         orm_mode = True
+
+
+class UserUpdate(BaseModel):
+    full_name: Optional[str]
+    username: Optional[str]
+    email: Optional[EmailStr]
+    phone: Optional[str]
+    gender: Optional[Gender]
+    role: Optional[UserRole]
+    is_active: Optional[bool]

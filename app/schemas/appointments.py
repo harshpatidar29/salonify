@@ -31,5 +31,6 @@ class AppointmentResponse(AppointmentBase):
     id: int
     created_at: datetime
     service_ids: List[int]
+
     class Config:
         orm_mode = True

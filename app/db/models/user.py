@@ -3,15 +3,16 @@ from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 from app.db.database import Base
 import enum
+from app.db.models.appointment import Appointment  # Ensure correct import order
 
 
-#user model
+# user model
 class Gender(str, enum.Enum):
     male = "male"
     female = "female"
     other = "other"
 
-   
+
 class UserRole(str, enum.Enum):
     owner = "owner"
     staff = "staff"
