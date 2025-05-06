@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from sqlalchemy.orm import declarative_base
-from app.routers import users, service
+from app.routers import users, service, appointment
 
 Base = declarative_base()
 
@@ -14,3 +14,4 @@ def read_root():
 
 app.include_router(users.router)
 app.include_router(service.router)
+app.include_router(appointment.router)

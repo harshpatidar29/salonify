@@ -1,36 +1,62 @@
 from pydantic import BaseModel
-from typing import Optional, List
+from typing import List, Optional
 from datetime import date, time, datetime
 from enum import Enum
 
 
-# --- Enum ---
-class Status(str, Enum):
+# Status Enum
+class AppointmentStatus(str, Enum):
     pending = "pending"
     complete = "complete"
     cancel = "cancel"
     confirmed = "confirmed"
 
 
-# --- Base shared fields ---
-class AppointmentBase(BaseModel):
+# Minimal Service Schema for output
+class ServiceOut(BaseModel):
+    id: int
+    name: str
+
+    class Config:
+        orm_mode = True
+
+
+class AppointmentCreate(BaseModel):
+    user_id: int
+    date: date
+    duration: Optional[time] = None
+    time: time
+    status: AppointmentStatus = AppointmentStatus.pending
+    notes: Optional[str] = None
+    services: Optional[List[int]] = []
+
+    class Config:
+        orm_mode = True
+
+
+class AppointmentResponse(BaseModel):
+    id: int
+    duration: Optional[time]
     user_id: int
     date: date
     time: time
-    status: Status = Status.pending
-    notes: Optional[str] = None
-
-
-# --- Schema for creating an appointment ---
-class AppointmentCreate(AppointmentBase):
-    service_ids: List[int]
-
-
-# --- Schema for reading appointment data ---
-class AppointmentResponse(AppointmentBase):
-    id: int
+    status: AppointmentStatus
+    notes: Optional[str]
     created_at: datetime
-    service_ids: List[int]
+    services: List[ServiceOut]
+
+    class Config:
+        orm_mode = True
+
+
+class AppointmentUpdate(BaseModel):
+    user_id: int
+    duration: Optional[time]
+    date: Optional[date]
+    time: Optional[time]
+    status: Optional[AppointmentStatus]
+    notes: Optional[str]
+    services: Optional[List[int]]
 
     class Config:
         orm_mode = True
