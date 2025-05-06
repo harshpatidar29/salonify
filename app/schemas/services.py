@@ -13,6 +13,7 @@ class Gender(str, Enum):
 
 # --- Base shared fields ---
 class ServiceBase(BaseModel):
+    user_id: int
     name: str
     description: Optional[str] = None
     price: int
@@ -30,6 +31,17 @@ class ServiceCreate(ServiceBase):
 class ServiceOut(ServiceBase):
     id: int
     created_at: datetime
+
+    class Config:
+        orm_mode = True
+
+class ServiceUpdate(BaseModel):
+    name: Optional[str] = None
+    description: Optional[str] = None
+    price: Optional[int] = None
+    duration: Optional[time] = None
+    gender: Optional[Gender] = None
+    is_active: Optional[bool] = None
 
     class Config:
         orm_mode = True

@@ -1,5 +1,5 @@
 import enum
-from sqlalchemy import Column, String, Integer, Enum, DateTime, Boolean, Time
+from sqlalchemy import Column, String, Integer, Enum, DateTime, Boolean, Time, ForeignKey
 from sqlalchemy.sql import func
 from app.db.database import Base
 from sqlalchemy.orm import relationship
@@ -23,6 +23,9 @@ class Service(Base):
     gender = Column(Enum(Gender), default=Gender.other, nullable=True)
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+
+    user = relationship("User", back_populates="services")
 
     appointments = relationship(
         "Appointment", secondary=appointment_services, back_populates="services"
