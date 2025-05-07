@@ -31,7 +31,7 @@ def create_appointment_api(appointment: AppointmentCreate, db: Session = Depends
         raise HTTPException(status_code=500, detail=f"Error creating appointment: {str(e)}")
     
 
-@router.delete("/{appointment_id}/", response_model=AppointmentResponse)
+@router.delete("/{appointment_id}/", status_code=200)
 def delete_appointment(appointment_id = int, db: Session = Depends(get_db)):
     db_appointment = appointment_crud.get_appointment_by_id(db, id=appointment_id)
     if not db_appointment:
