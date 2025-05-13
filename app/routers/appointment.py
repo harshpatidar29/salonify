@@ -47,3 +47,9 @@ def update_appointment_api(appointment_id: int,updates: AppointmentUpdate,db: Se
     if not updated_appointment:
         raise HTTPException(status_code=404, detail="Appointment not found")
     return updated_appointment
+
+
+@router.get("/available_slot/{woner_id}/")
+def get_available_appointment(owner_id: int, db: Session = Depends(get_db)):
+    available_appointments = appointment_crud.get_available_appointment(db, owner_id=owner_id)
+    return True

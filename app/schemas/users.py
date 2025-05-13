@@ -50,3 +50,14 @@ class UserUpdate(BaseModel):
     gender: Optional[Gender]
     role: Optional[UserRole]
     is_active: Optional[bool]
+
+
+class UserFilter(BaseModel):
+    id: Optional[int] = None
+    full_name: Optional[str] = None
+    username: Optional[str] = None
+    email: Optional[EmailStr] = None
+    phone: Optional[str] = None
+    gender: Optional[Gender] =  None
+    role: Optional[UserRole] = None
+    

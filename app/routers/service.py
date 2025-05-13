@@ -13,18 +13,17 @@ def create_service(service: ServiceCreate, db: Session = Depends(get_db)):
         raise HTTPException(status_code=400, detail="Email already registered")
     return service_crud.create_service(db, service)
 
-
-@router.get("/{service_id}/", response_model=ServiceOut)
-def get_service(service_id: int, db: Session = Depends(get_db)):
-    db_service = service_crud.get_service_by_id(db, service_id=service_id)
+@router.get("/all_service/", response_model=list[ServiceOut])
+def get_all_Service(db: Session = Depends(get_db)):
+    db_service = service_crud.get_all_service(db)
     if not db_service:
         raise HTTPException(status_code=400, detail="Service Not Found")
     return db_service
 
 
-@router.get("/all_service/", response_model=list[ServiceOut])
-def get_all_Service(db: Session = Depends(get_db)):
-    db_service = service_crud.get_all_service(db)
+@router.get("/{service_id}/", response_model=ServiceOut)
+def get_service(service_id: int, db: Session = Depends(get_db)):
+    db_service = service_crud.get_service_by_id(db, service_id=service_id)
     if not db_service:
         raise HTTPException(status_code=400, detail="Service Not Found")
     return db_service

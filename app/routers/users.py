@@ -1,9 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.schemas.users import UserCreate, UserResponse, UserUpdate
+from app.schemas.users import UserCreate, UserResponse, UserUpdate, UserFilter
 from app.crud import user_crud as crud_user
 from app.db.database import get_db
 from typing import List
+from app.db.models.user import User
 
 router = APIRouter(prefix="/users", tags=["Users"])
 
@@ -25,8 +26,8 @@ def get_user(user_id: int, db: Session = Depends(get_db)):
 
 
 @router.get("/all_user/", response_model=List[UserResponse])
-def get_all_users(db: Session = Depends(get_db)):
-    db_users = crud_user.get_all_users(db)
+def get_all_users(filter: UserFilter = Depends(), db: Session = Depends(get_db)):
+    db_users = crud_user.get_all_users(db, filter)
     if not db_users:
         raise HTTPException(status_code=400, detail="No User Found")
     return db_users

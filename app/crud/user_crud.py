@@ -36,8 +36,27 @@ def get_user_by_id(db: Session, id: id):
     return db.query(User).filter(User.id == id).first()
 
 
-def get_all_users(db: Session):
-    return db.query(User).all()
+def get_all_users(db: Session, filter):
+    query = db.query(User)
+    if filter.email:
+        query = query.filter(User.email == filter.email)
+    if filter.id:
+        query = query.filter(User.id == filter.id)
+    if filter.full_name:
+        query = query.filter(User.full_name == filter.full_name)
+    if filter.username:
+        query = query.filter(User.username == filter.username)
+    if filter.phone:
+        query = query.filter(User.phone == filter.phone)
+    if filter.gender:
+        query = query.filter(User.gender == filter.gender)
+    if filter.role:
+        query = query.filter(User.role == filter.role)
+
+    items = query.all()
+
+    # return db.query(User).all()
+    return items
 
 
 def update_user(user_id: int, user_update: UserUpdate, db: Session):
