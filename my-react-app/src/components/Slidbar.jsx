@@ -1,4 +1,6 @@
+// src/components/Sidebar.jsx
 import React from "react";
+import { Link } from "react-router-dom";
 import "./sliderbar.css";
 
 function Sidebar() {
@@ -6,10 +8,10 @@ function Sidebar() {
     <aside className="sidebar">
       <div className="sidebar-header">Salonify</div>
       <nav className="sidebar-nav">
-        <a href="/owner/dashboard" className="sidebar-link">Dashboard</a>
-        <a href="/owner/appointment" className="sidebar-link">Appointment</a>
-        <a href="/owner/service" className="sidebar-link">Services</a>
-        <a href="/owner/settings" className="sidebar-link">Settings</a>
+        <Link to="/owner/dashboard" className="sidebar-link">Dashboard</Link>
+        <Link to="/owner/appointment" className="sidebar-link">Appointment</Link>
+        <Link to="/owner/service" className="sidebar-link">Services</Link>
+        <Link to="/owner/settings" className="sidebar-link">Settings</Link>
       </nav>
     </aside>
   );

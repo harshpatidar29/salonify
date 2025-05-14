@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
 
 export default function Appointments() {
   const [appointments, setAppointments] = useState([]);
@@ -35,9 +34,7 @@ export default function Appointments() {
 
   return (
     <>
-      <Navbar />
       <main style={{ padding: "20px" }}>
-        <h1>Appointments</h1>
         <button
           style={{
             marginBottom: "20px",

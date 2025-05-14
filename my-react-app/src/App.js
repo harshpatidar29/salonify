@@ -1,23 +1,26 @@
-import './App.css';
-import React from 'react';
-import { Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
-import Logout from "./components/Logout";
-import Home from "./pages/Home";
-import Service from "./components/Service";
-import Appointment from "./components/Appointment";
-import OwnerDashboard from "./pages/owner/Dashboard";
+// src/App.jsx
+import { Routes, Route } from 'react-router-dom';
+import OwnerLayout from './layout/OwnerLayout';
+import Dashboard from './pages/owner/Dashboard';
+import Login from './pages/Login';
+import Logout from './components/Logout';
+import Appointment from './pages/owner/Appointment';
+import Service from './pages/owner/Service';
+
 
 function App() {
   return (
-      <Routes>
-        <Route path="/owner/dashboard" element={<OwnerDashboard />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/logout" element={<Logout />} />
-        <Route path="/services" element={<Service />} />
-        <Route path="/appointments" element={<Appointment />} />
-      </Routes>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/logout" element={<Logout />} />
+
+      <Route path="/owner" element={<OwnerLayout />}>
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="appointment" element={<Appointment />} />
+        <Route path="service" element={<Service />} />
+
+      </Route>
+    </Routes>
   );
 }
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
 
 export default function Services() {
   const [services, setServices] = useState([]);
@@ -35,9 +34,7 @@ export default function Services() {
 
   return (
     <>
-      <Navbar />
       <main style={{ padding: "20px" }}>
-        <h1>Our Services</h1>
 
         {loading && <p>Loading services...</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
