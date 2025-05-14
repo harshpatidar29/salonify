@@ -16,10 +16,12 @@ function Home() {
   return (
     <>
       <Navbar />
-      <main style={{ padding: "20px" }}>
-        <h1>Welcome to SalonApp</h1>
-        <p>Your one-stop destination for all your salon needs!</p>
-      </main>
+      <section className="bg-blue-600 text-white py-8 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-semibold">Welcome Back, Alex!</h2>
+          <p className="text-blue-100 mt-2">Here’s your salon performance overview for today.</p>
+        </div>
+      </section>
     </>
   );
 }

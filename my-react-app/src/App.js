@@ -5,10 +5,12 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Service from "./components/Service";
 import Appointment from "./components/Appointment";
+import OwnerDashboard from "./pages/owner/Dashboard";
 
 function App() {
   return (
-      <Routes>      
+      <Routes>
+        <Route path="/owner/dashboard" element={<OwnerDashboard />} />
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/services" element={<Service />} />
