@@ -4,14 +4,16 @@ import { useNavigate } from "react-router-dom";
 import Navbar from '../../components/Navbar';
 import Sidebar from '../../components/Slidbar';
 import DashboardCards from '../../components/DashboardCards';
+import { isTokenValid } from "../../utils/auth";
 
 export default function  OwnerDashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/login");
+    if (!token || !isTokenValid()) {
+        localStorage.removeItem("token");
+        navigate("/login");
     }
   }, [navigate]);
 

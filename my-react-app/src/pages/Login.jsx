@@ -28,8 +28,23 @@ function Login() {
         },
       });
 
+      const token = res.data.access_token;
       localStorage.setItem("token", res.data.access_token);
-      navigate("/");
+
+      const userRes = await axios.get("http://127.0.0.1:8000/protected/", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const user = userRes.data;
+      const role = user.role;
+
+      if (role === "owner") {
+        navigate("/owner/dashboard");
+      } else {
+        navigate("/");
+      }
     } catch (err) {
       setMessage("❌ Login failed: Invalid credentials.");
     }
