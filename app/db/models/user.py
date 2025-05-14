@@ -35,3 +35,5 @@ class User(Base):
 
     appointments = relationship("Appointment", back_populates="user")
     services = relationship("Service", back_populates="user")
+    salons = relationship("Salon", back_populates="owner", cascade="all, delete")
+
