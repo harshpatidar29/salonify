@@ -8,7 +8,7 @@ router = APIRouter(prefix="/service", tags=["service"])
 
 @router.post("/", response_model=ServiceOut)
 def create_service(service: ServiceCreate, db: Session = Depends(get_db)):
-    db_service = service_crud.get_service_by_salon(db, user_id=service.user_id, name=service.name)
+    db_service = service_crud.get_service_by_salon(db, salon_id=service.salon_id, name=service.name)
     if db_service:
         raise HTTPException(status_code=400, detail="Email already registered")
     return service_crud.create_service(db, service)

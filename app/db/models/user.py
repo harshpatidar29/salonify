@@ -34,6 +34,6 @@ class User(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     appointments = relationship("Appointment", back_populates="user")
-    services = relationship("Service", back_populates="user")
+    # services = relationship("Service", back_populates="user")
     salons = relationship("Salon", back_populates="owner", cascade="all, delete")
 

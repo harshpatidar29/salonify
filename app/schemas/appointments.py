@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from typing import List, Optional
 from datetime import date, time, datetime
 from enum import Enum
-
+from uuid import UUID
 
 # Status Enum
 class AppointmentStatus(str, Enum):
@@ -23,6 +23,7 @@ class ServiceOut(BaseModel):
 
 class AppointmentCreate(BaseModel):
     user_id: int
+    salon_id: UUID
     date: date
     duration: Optional[time] = None
     time: time
@@ -38,6 +39,7 @@ class AppointmentResponse(BaseModel):
     id: int
     duration: Optional[time]
     user_id: int
+    salon_id: UUID
     date: date
     time: time
     status: AppointmentStatus
@@ -51,6 +53,7 @@ class AppointmentResponse(BaseModel):
 
 class AppointmentUpdate(BaseModel):
     user_id: int
+    salon_id: UUID
     duration: Optional[time]
     date: Optional[date]
     time: Optional[time]

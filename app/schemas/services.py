@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from typing import Optional
 from datetime import  time, datetime
 from enum import Enum
-
+from uuid import UUID
 
 # --- Gender Enum (same as User model) ---
 class Gender(str, Enum):
@@ -13,7 +13,7 @@ class Gender(str, Enum):
 
 # --- Base shared fields ---
 class ServiceBase(BaseModel):
-    user_id: int
+    salon_id: UUID
     name: str
     description: Optional[str] = None
     price: int

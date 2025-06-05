@@ -6,7 +6,7 @@ import Login from './pages/Login';
 import Logout from './components/Logout';
 import Appointment from './pages/owner/Appointment';
 import Service from './pages/owner/Service';
-
+import Staff from './pages/owner/Staff';
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="appointment" element={<Appointment />} />
         <Route path="service" element={<Service />} />
+        <Route path="staff" element={<Staff />} />
 
       </Route>
     </Routes>

@@ -17,6 +17,7 @@ def create_appointment(db: Session, appointment: AppointmentCreate):
     # Create appointment record
     db_appointment = Appointment(
         user_id=appointment.user_id,
+        salon_id=appointment.salon_id,
         date=appointment.date,
         time=appointment.time,
         duration=appointment.duration,

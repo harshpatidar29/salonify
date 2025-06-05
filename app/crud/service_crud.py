@@ -3,10 +3,10 @@ from fastapi import HTTPException, status
 from app.db.models.services import Service
 from app.schemas.services import ServiceCreate, ServiceOut, ServiceUpdate
 from passlib.context import CryptContext
+from uuid import UUID
 
-
-def get_service_by_salon(db: Session, user_id: int, name: str):
-    return db.query(Service).filter((Service.name == name) & (Service.user_id == user_id)).first()
+def get_service_by_salon(db: Session, salon_id: UUID, name: str):
+    return db.query(Service).filter((Service.name == name) & (Service.salon_id == salon_id)).first()
 
 
 def create_service(db: Session, service: ServiceCreate):
@@ -17,7 +17,7 @@ def create_service(db: Session, service: ServiceCreate):
         duration=service.duration,
         gender=service.gender,
         is_active=service.is_active,
-        user_id=service.user_id,
+        salon_id=service.salon_id,
     )
     db.add(db_service)
     db.commit()

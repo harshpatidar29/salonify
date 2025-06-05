@@ -25,5 +25,7 @@ class Salon(Base):
     is_approved = Column(Boolean, default=False)
     created_at = Column(DateTime, default=datetime.utcnow)
 
+    appointments = relationship("Appointment", back_populates="salon")
+    services = relationship("Service", back_populates="salon")
     owner = relationship("User", back_populates="salons")
     staff_members = relationship("StaffMember", back_populates="salon", cascade="all, delete")

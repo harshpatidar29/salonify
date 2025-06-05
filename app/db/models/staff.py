@@ -3,7 +3,7 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 from app.db.database import Base
 import uuid
-
+from .timeslot import TimeSlot
 
 class StaffMember(Base):
     __tablename__ = "staff_members"
@@ -20,3 +20,4 @@ class StaffMember(Base):
     is_active = Column(Boolean, default=True)
 
     salon = relationship("Salon", back_populates="staff_members")
+    time_slots = relationship("TimeSlot", back_populates="staff_member")

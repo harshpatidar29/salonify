@@ -4,7 +4,7 @@ from sqlalchemy.sql import func
 from app.db.database import Base
 from sqlalchemy.orm import relationship
 from app.db.models.appointment_service import appointment_services
-
+from sqlalchemy.dialects.postgresql import UUID
 
 class Gender(str, enum.Enum):
     male = "male"
@@ -23,9 +23,9 @@ class Service(Base):
     gender = Column(Enum(Gender), default=Gender.other, nullable=True)
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    salon_id = Column(UUID(as_uuid=True), ForeignKey("salons.id"), nullable=False)
 
-    user = relationship("User", back_populates="services")
+    salon = relationship("Salon", back_populates="services")
 
     appointments = relationship(
         "Appointment", secondary=appointment_services, back_populates="services"
