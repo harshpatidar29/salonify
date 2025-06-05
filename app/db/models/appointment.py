@@ -32,7 +32,9 @@ class Appointment(Base):
 
     user = relationship("User", back_populates="appointments")
     salon = relationship("Salon", back_populates="appointments")
+    
     # Many-to-many relationship to services
     services = relationship(
         "Service", secondary=appointment_services, back_populates="appointments"
     )
+    payment = relationship("Payment", back_populates="appointment", uselist=False)
