@@ -1,23 +1,19 @@
+# app/db/models/user.py
 from sqlalchemy import Column, Integer, String, Enum, Boolean, DateTime
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 from app.db.database import Base
 import enum
-from app.db.models.appointment import Appointment  # Ensure correct import order
 
-
-# user model
 class Gender(str, enum.Enum):
     male = "male"
     female = "female"
     other = "other"
 
-
 class UserRole(str, enum.Enum):
     owner = "owner"
     staff = "staff"
     customer = "customer"
-
 
 class User(Base):
     __tablename__ = "users"
@@ -34,7 +30,5 @@ class User(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     appointments = relationship("Appointment", back_populates="user")
-    # services = relationship("Service", back_populates="user")
     salons = relationship("Salon", back_populates="owner", cascade="all, delete")
     payments = relationship("Payment", back_populates="user")
-

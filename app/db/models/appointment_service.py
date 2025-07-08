@@ -1,5 +1,4 @@
 from sqlalchemy import Table, Column, ForeignKey
-
 from app.db.database import Base
 
 appointment_services = Table(

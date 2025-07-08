@@ -1,11 +1,10 @@
+# app/db/models/salon.py
 from sqlalchemy import Column, String, Boolean, DateTime, ForeignKey, Integer
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
-import uuid
 from datetime import datetime
-
+import uuid
 from app.db.database import Base
-
 
 class Salon(Base):
     __tablename__ = "salons"

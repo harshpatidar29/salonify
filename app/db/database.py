@@ -1,5 +1,6 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from app.db import models
 from sqlalchemy import create_engine
 from app.config import settings  # use your custom settings for DB URL
 

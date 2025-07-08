@@ -3,6 +3,7 @@ from datetime import datetime
 from sqlalchemy import Column, String, ForeignKey, Integer, DECIMAL, Enum, DateTime
 from sqlalchemy.orm import relationship
 from app.db.database import Base
+from app.db.models import appointment
 
 
 class PaymentMethodEnum(str, enum.Enum):
