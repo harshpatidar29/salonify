@@ -10,7 +10,7 @@ export default function Staffs() {
       try {
         const token = localStorage.getItem("token");
 
-        const response = await fetch("http://127.0.0.1:8000/staff/salon/ab1b6778-8000-4367-bddc-9b733120fa0d", {
+        const response = await fetch("http://127.0.0.1:8000/SalonStaff/bca091a9-1bd3-4f80-97e7-11c8d31b088f", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -46,7 +46,8 @@ export default function Staffs() {
         <div style={gridStyle}>
           {staff.map((staff) => (
             <div key={staff.id} style={cardStyle}>
-              <h3>{staff.name}</h3>
+              <h3>{staff.user.full_name}</h3>
+              <h3>{staff.user.email}</h3>
               <p>{staff.role}</p>
             </div>
           ))}

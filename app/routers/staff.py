@@ -8,10 +8,10 @@ from app.db.database import get_db
 from app.core.dependencies import get_current_user
 from app.db.models.user import User
 
-router = APIRouter(prefix="/staff", tags=["Staff Members"])
+router = APIRouter()
 
 
-@router.post("/", response_model=StaffMemberOut, status_code=status.HTTP_201_CREATED)
+@router.post("/staff/", response_model=StaffMemberOut, status_code=status.HTTP_201_CREATED)
 def create_staff(
     staff: StaffMemberCreate,
     db: Session = Depends(get_db),
@@ -20,7 +20,7 @@ def create_staff(
     return crud_staff.create_staff_member(db, staff)
 
 
-@router.get("/{staff_id}", response_model=StaffMemberOut)
+@router.get("/staff/{staff_id}", response_model=StaffMemberOut)
 def read_staff_member(
     staff_id: UUID,
     db: Session = Depends(get_db),
@@ -32,16 +32,7 @@ def read_staff_member(
     return db_staff
 
 
-@router.get("/salon/{salon_id}", response_model=list[StaffMemberOut])
-def read_staff_by_salon(
-    salon_id: UUID,
-    db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user)
-):
-    return crud_staff.get_staff_by_salon(db, salon_id)
-
-
-@router.put("/{staff_id}", response_model=StaffMemberOut)
+@router.put("/staff/{staff_id}", response_model=StaffMemberOut)
 def update_staff(
     staff_id: UUID,
     staff_update: StaffMemberUpdate,
@@ -54,7 +45,7 @@ def update_staff(
     return updated
 
 
-@router.delete("/{staff_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/staff/{staff_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_staff(
     staff_id: UUID,
     db: Session = Depends(get_db),
@@ -63,3 +54,12 @@ def delete_staff(
     deleted = crud_staff.delete_staff_member(db, staff_id)
     if not deleted:
         raise HTTPException(status_code=404, detail="Staff member not found")
+
+
+@router.get("/SalonStaff/{salon_id}", response_model=list[StaffMemberOut])
+def read_staff_by_salon(
+    salon_id: UUID,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    return crud_staff.get_staff_by_salon(db, salon_id)

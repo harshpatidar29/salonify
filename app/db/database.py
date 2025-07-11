@@ -5,7 +5,10 @@ from sqlalchemy import create_engine
 from app.config import settings  # use your custom settings for DB URL
 
 SQLALCHEMY_DATABASE_URL = settings.DATABASE_URL  # from .env
-
+print(settings.DATABASE_URL)
+print(settings.DATABASE_URL)
+print(settings.DATABASE_URL)
+print(settings.DATABASE_URL)
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

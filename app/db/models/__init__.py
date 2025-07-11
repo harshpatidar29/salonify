@@ -6,3 +6,4 @@ from .appointment import Appointment
 from .appointment_service import appointment_services
 from .services import Service
 from .payment import Payment
+from .staff import StaffMember

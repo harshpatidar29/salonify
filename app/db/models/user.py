@@ -32,3 +32,5 @@ class User(Base):
     appointments = relationship("Appointment", back_populates="user")
     salons = relationship("Salon", back_populates="owner", cascade="all, delete")
     payments = relationship("Payment", back_populates="user")
+    staff_profile = relationship("StaffMember", back_populates="user", uselist=False)
+

@@ -44,3 +44,6 @@ def update_service(db: Session, service_id: int, service_data: ServiceUpdate):
     db.commit()
     db.refresh(service)
     return service
+
+def get_salon_service(db: Session, salon_id: UUID):
+    return db.query(Service).filter(Service.salon_id == salon_id).all()

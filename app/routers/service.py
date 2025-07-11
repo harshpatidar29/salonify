@@ -3,6 +3,9 @@ from sqlalchemy.orm import Session
 from app.schemas.services import ServiceCreate, ServiceOut, ServiceUpdate
 from app.crud import service_crud
 from app.db.database import get_db
+from uuid import UUID
+from app.core.dependencies import get_current_user
+from app.db.models.user import User
 
 router = APIRouter(prefix="/service", tags=["service"])
 
@@ -45,3 +48,11 @@ def patch_service(service_id: int, service_data: ServiceUpdate, db: Session = De
     if not service:
         raise HTTPException(status_code=404, detail="Service not found")
     return service
+
+@router.get("/SalonService/{salon_id}", response_model=list[ServiceOut])
+def read_salon_service(
+    salon_id: UUID,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    return service_crud.get_salon_service(db, salon_id)
