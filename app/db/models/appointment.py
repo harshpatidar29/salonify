@@ -31,3 +31,4 @@ class Appointment(Base):
     salon = relationship("Salon", back_populates="appointments")
     services = relationship("Service", secondary=appointment_services, back_populates="appointments")
     payment = relationship("Payment", back_populates="appointment", uselist=False)
+
